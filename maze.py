@@ -83,7 +83,13 @@ def cc(prev):
     elif prev=='hr':
         options = ['m']
     
-    st.markdown("They say they are very sorry but you cannot go home yet.  \nThey suggest that you'll need to talk to:")
+    if len(options)>1:
+        op_str = 'either'
+    else:
+        op_str = ''
+    
+    st.markdown(f"They say they are very sorry but you cannot go home yet.  \n"
+                    f"They suggest that you'll need to talk to {op_str}:")
 
     buttons(options)
 
@@ -106,7 +112,7 @@ if 'loc' not in st.session_state:
 if 'steps' not in st.session_state:
     st.session_state.steps=0
 
-st.title ('School Bureaucracy Maze')
+st.title (':confused: School Bureaucracy Maze')
 
 
 st.info("Welcome to the school bureaucracy maze.  \n You are trying to get permission to go home  \n You'll need to talk to lots of people")
