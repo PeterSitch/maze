@@ -4,6 +4,13 @@ import streamlit as st
 # solution hr,cc,m,cc,im, hr
 ##         mum, reception,mr,reception, miss,mum
 
+st.set_page_config(
+    page_title="School maze",
+    page_icon=":confused:",
+
+ )
+
+
 def move (option):
     st.session_state.prev=st.session_state.loc
     st.session_state.loc=option
