@@ -84,8 +84,10 @@ def cc(prev):
     
     st.markdown("They say they are very sorry but you cannot go home yet.  \nThey suggest that you'll need to talk to:")
 
-    for option in options:
-        st.button(flavour_dict[option], on_click=move,args=(option,))
+    for i, option in enumerate(options):
+        st.button(flavour_dict[option], on_click=move,args=(option,)) 
+        if i +1 != len(options):
+            st.write('or')
 
 
 
