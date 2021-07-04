@@ -1,7 +1,8 @@
 import streamlit as st
 
-
-
+##https://www.logicmazes.com/bureau/index.htm
+# solution hr,cc,m,cc,im, hr
+##         mum, reception,mr,reception, miss,mum
 
 def move (option):
     st.session_state.prev=st.session_state.loc
@@ -28,10 +29,7 @@ def hr(prev):
     else:
         st.markdown("She's very sorry but can't take you home until you have permission.  \nShe suggests that you'll need to talk to either:")
 
-        for i,option in enumerate(options):
-            st.button(flavour_dict[option], on_click=move,args=(option,))
-            if i + 1 != len(options):
-                st.write('or')
+        buttons(options)
 
 
 def m(prev):
@@ -48,12 +46,10 @@ def m(prev):
         op_str = 'either'
     else:
         op_str = ''
-    st.markdown(f"They shake their head and say you cannot go home yet.  \nThey suggest that you'll need to talk to {op_str}:")
+    st.markdown(f"They shake their head and say you cannot go home yet.  \n"
+                f"They suggest that you'll need to talk to {op_str}:")
     
-    for i, option in enumerate(options):
-        st.button(flavour_dict[option], on_click=move,args=(option,))
-        if i + 1 != len(options):
-            st.write('or')
+    buttons(options)
 
 def im(prev):
 
@@ -63,12 +59,10 @@ def im(prev):
         options = ['m','hr']
     elif prev=='m' or prev=='hr':
         options = ['m','cc']
-    st.markdown(f"They see that you have come from {flavour_dict[prev]} but still say you cannot go home yet.  \nThey suggest that you'll need to talk to either:")
+    st.markdown(f"They see that you have come from {flavour_dict[prev]} but still say you cannot go home yet.  \n"
+                f"They suggest that you'll need to talk to either:")
     
-    for i, option in enumerate(options):
-        st.button(flavour_dict[option], on_click=move,args=(option,)) 
-        if i +1 != len(options):
-            st.write('or')
+    buttons(options)
             
             
 def cc(prev):
@@ -84,13 +78,13 @@ def cc(prev):
     
     st.markdown("They say they are very sorry but you cannot go home yet.  \nThey suggest that you'll need to talk to:")
 
+    buttons(options)
+
+def buttons(options):
     for i, option in enumerate(options):
         st.button(flavour_dict[option], on_click=move,args=(option,)) 
         if i +1 != len(options):
             st.write('or')
-
-
-
 
 
 loc_dict={'hr':hr,'m':m,'cc':cc,'im':im}
@@ -107,12 +101,15 @@ if 'steps' not in st.session_state:
 
 st.title ('School Bureaucracy Maze')
 
-#if st.session_state.prev=='start':
+
 st.info("Welcome to the school bureaucracy maze.  \n You are trying to get permission to go home  \n You'll need to talk to lots of people")
     
 
-st.markdown(f'## You are talking to {flavour_dict[st.session_state.loc]}')#, from {st.session_state.prev}') 
+st.markdown(f'## You are talking to {flavour_dict[st.session_state.loc]}')
 
+if st.session_state.steps>20:
+    st.markdown('You are very tired')
+
+    
 loc_dict[st.session_state.loc](st.session_state.prev)
 
-#st.write('huh')
