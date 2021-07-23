@@ -113,7 +113,7 @@ def buttons(options):
 
 loc_dict={'hr':hr,'m':m,'cc':cc,'im':im}
 
-flavour_dict={'hr':'Mummy','m':'Mr Johnston','cc':'The nice receptionist','im':'Miss Randall'}
+flavour_dict={'hr':'Mummy','m':'Mr Johnston','cc':'The nice receptionist','im':'Mrs Randall'}
         
 if 'prev' not in st.session_state:
 	st.session_state.prev = 'start'
