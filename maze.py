@@ -1,13 +1,13 @@
 import streamlit as st
-from PIL import Image
+#from PIL import Image
 
 ##https://www.logicmazes.com/bureau/index.htm
 # solution hr,cc,m,cc,im, hr
-##         mum, reception,mr,reception, miss,mum
+##         owl, basket,kara_nala,basket, head min,owl
 
 st.set_page_config(
-    page_title="School maze",
-    page_icon=":confused:",
+    page_title="Meredith maze",
+    page_icon="🦊",
     layout="wide",
 
  )
@@ -34,13 +34,14 @@ def hr(prev):
     if prev=='im':
         ##options = ['win']
         col1.markdown(f'## You have permission to go home!  \n You took {st.session_state.steps} moves')
-        col2.image('winner.jpg')
+        col2.image('winner.jpg',use_column_width ='always')
         st.balloons()
     else:
     
-        col2.image('mum.jpeg')
+        col2.image('wise_old_owl.jpg',use_column_width ='always')
     
-        col1.markdown("She's very sorry but can't take you home until you have permission.  \nShe suggests that you'll need to talk to either:")
+        col1.markdown("She's very sorry but can't let you escape until you have successfully cracked the maze.  \n"
+                        "She suggests that you'll need to visit either:")
 
         buttons(options)
 
@@ -60,9 +61,9 @@ def m(prev):
     else:
         op_str = ''
         
-    col1.markdown(f"They shake their head and say you cannot go home yet.  \n"
-                f"They suggest that you'll need to talk to {op_str}:")
-    col2.image('mr_johnston.jpeg')
+    col1.markdown(f"They shake their head and say you cannot go escape yet.  \n"
+                f"They suggest that you'll need to visit {op_str}:")
+    col2.image('kara_nala.jpg',use_column_width ='always')
     
     buttons(options)
 
@@ -74,9 +75,9 @@ def im(prev):
         options = ['m','hr']
     elif prev=='m' or prev=='hr':
         options = ['m','cc']
-    col1.markdown(f"They see that you have come from {flavour_dict[prev]} but still say you cannot go home yet.  \n"
-                f"They suggest that you'll need to talk to either:")
-    col2.image('mrs_randall.jpeg')            
+    col1.markdown(f"They see that you have come from {flavour_dict[prev][1]} but shakes their head when you ask if you can escape.  \n"
+                f"They gesture wildly in the direction of:")
+    col2.image('head_minion.jpg',use_column_width ='always')            
     
     buttons(options)
             
@@ -97,23 +98,26 @@ def cc(prev):
     else:
         op_str = ''
     
-    col1.markdown(f"They say they are very sorry but you cannot go home yet.  \n"
-                    f"They suggest that you'll need to talk to {op_str}:")
+    col1.markdown(f"Dogman looks embaressed at the mess.  \n"
+                    f"The Crimson Vixen politely suggests visiting {op_str}:")
     
-    col2.image('receptionist.jpeg')
+    col2.image('dogman_basket.jpg',use_column_width ='always')
     
     buttons(options)
 
 def buttons(options):
     for i, option in enumerate(options):
-        col1.button(flavour_dict[option], on_click=move,args=(option,)) 
+        col1.button(flavour_dict[option][1], on_click=move,args=(option,)) 
         if i +1 != len(options):
             col1.write('or')
 
 
 loc_dict={'hr':hr,'m':m,'cc':cc,'im':im}
 
-flavour_dict={'hr':'Mummy','m':'Mr Johnston','cc':'The nice receptionist','im':'Mrs Randall'}
+flavour_dict={'hr':('at the tree of life talking to', 'The Wise Old Owl'),
+              'm':('hanging out with', 'Kara and Nara'),
+              'cc':('at', 'Dogman\'s basket'),
+              'im':('stopped by', 'Dogman\'s Head Minion')}
         
 if 'prev' not in st.session_state:
 	st.session_state.prev = 'start'
@@ -123,22 +127,24 @@ if 'loc' not in st.session_state:
 if 'steps' not in st.session_state:
     st.session_state.steps=0
 
-st.title (':confused: School Bureaucracy Maze')
+st.title ('🦊 Meredith\'s Maze')
 
 
-st.info("Welcome to the school bureaucracy maze.  \n You are trying to get permission to go home  \n You'll need to talk to lots of people")
+st.info("Welcome to the Meredith's maze.  \n"+
+ "The Crimson Vixon and Dogman are trying to puzzle through the maze  \n"+
+ "They'll need to do lots of exploring, and visit the locations in just the right order")
     
 col1,col2 = st.beta_columns(2)
 
-col1.markdown(f'## You are talking to {flavour_dict[st.session_state.loc]}')
+col1.markdown(f'## You are {flavour_dict[st.session_state.loc][0]} {flavour_dict[st.session_state.loc][1]}')
 
 
 
 
 
 if st.session_state.steps>20:
-    st.markdown(f"You are very tired  \n You've spoken to {st.session_state.steps} people!")
-    st.image('tired_caleb.jpeg',use_column_width ='always')
+    st.markdown(f"The Crimson Vixon and Dogman are very tired  \n They've been to {st.session_state.steps} locations!")
+    st.image('tired_heros.jpg',use_column_width ='always')
 
 
     
