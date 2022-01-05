@@ -33,15 +33,15 @@ def hr(prev):
         
     if prev=='im':
         ##options = ['win']
-        col1.markdown(f'## You have permission to go home!  \n You took {st.session_state.steps} moves')
+        col1.markdown(f'## Woo Hoo! You have escaped the maze!  \n You took {st.session_state.steps} moves')
         col2.image('winner.jpg',use_column_width ='always')
         st.balloons()
     else:
     
         col2.image('wise_old_owl.jpg',use_column_width ='always')
     
-        col1.markdown("She's very sorry but can't let you escape until you have successfully cracked the maze.  \n"
-                        "She suggests that you'll need to visit either:")
+        col1.markdown("She's very very sorry but she can't let you escape until you have successfully cracked the maze.  \n"
+                        "She suggests that you'll want to visit either:")
 
         buttons(options)
 
@@ -61,8 +61,8 @@ def m(prev):
     else:
         op_str = ''
         
-    col1.markdown(f"They shake their head and say you cannot go escape yet.  \n"
-                f"They suggest that you'll need to visit {op_str}:")
+    col1.markdown(f"They shake their heads. Dear, oh dear. You cannot escape yet.  \n"
+                f"They suggest that you'll want to visit {op_str}:")
     col2.image('kara_nala.jpg',use_column_width ='always')
     
     buttons(options)
@@ -75,8 +75,8 @@ def im(prev):
         options = ['m','hr']
     elif prev=='m' or prev=='hr':
         options = ['m','cc']
-    col1.markdown(f"They see that you have come from {flavour_dict[prev][1]} but shakes their head when you ask if you can escape.  \n"
-                f"They gesture wildly in the direction of:")
+    col1.markdown(f"They see that you've come from {flavour_dict[prev][1]} but shake their head when you ask if you can escape.  \n"
+                f"They growl under their breath, then turn to you and, with some displeasure, gesture wildly in the direction of:")
     col2.image('head_minion.jpg',use_column_width ='always')            
     
     buttons(options)
@@ -98,8 +98,8 @@ def cc(prev):
     else:
         op_str = ''
     
-    col1.markdown(f"Dogman looks embaressed at the mess.  \n"
-                    f"The Crimson Vixen politely suggests visiting {op_str}:")
+    col1.markdown(f"Dogman's cheeks turn red and his tail darts between his legs.  \n   He didn't expect the maze to lead to his bedroom in such a mess. \n"
+                    f"The Crimson Vixen politely pretends not to notice and suggests visiting {op_str}:")
     
     col2.image('dogman_basket.jpg',use_column_width ='always')
     
@@ -131,8 +131,8 @@ st.title ('🦊 Meredith\'s Maze')
 
 
 st.info("Welcome to the Meredith's maze.  \n"+
- "The Crimson Vixon and Dogman are trying to puzzle through the maze  \n"+
- "They'll need to do lots of exploring, and visit the locations in just the right order")
+ "The Crimson Vixon and Dogman are trying to puzzle through the maze.  \n"+
+ "They haven't been able to find a map so they'll need to do lots of exploring, and visit the locations in just the right order")
     
 col1,col2 = st.beta_columns(2)
 
@@ -143,7 +143,7 @@ col1.markdown(f'## You are {flavour_dict[st.session_state.loc][0]} {flavour_dict
 
 
 if st.session_state.steps>20:
-    st.markdown(f"The Crimson Vixon and Dogman are very tired  \n They've been to {st.session_state.steps} locations!")
+    st.markdown(f"The Crimson Vixon and Dogman are getting very tired  \n So far they've been to {st.session_state.steps} locations!")
     st.image('tired_heros.jpg',use_column_width ='always')
 
 
