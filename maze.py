@@ -36,6 +36,7 @@ def hr(prev):
         col1.markdown(f'## Woo Hoo! You have escaped the maze!  \n You took {st.session_state.steps} moves')
         col2.image('winner.jpg',use_column_width ='always')
         st.balloons()
+        st.session_state.loc = 'win'
     else:
     
         col2.image('wise_old_owl.jpg',use_column_width ='always')
@@ -138,15 +139,10 @@ col1,col2 = st.beta_columns(2)
 
 col1.markdown(f'## You are {flavour_dict[st.session_state.loc][0]} {flavour_dict[st.session_state.loc][1]}')
 
-
-
-
-
-if st.session_state.steps>20:
-    st.markdown(f"The Crimson Vixon and Dogman are getting very tired  \n So far they've been to {st.session_state.steps} locations!")
-    st.image('tired_heros.jpg',use_column_width ='always')
-
-
     
 loc_dict[st.session_state.loc](st.session_state.prev)
 
+if st.session_state.loc != 'win':
+    if st.session_state.steps>20:
+        st.markdown(f"The Crimson Vixon and Dogman are getting very tired  \n So far they've been to {st.session_state.steps} locations!")
+        st.image('tired_heros.jpg',use_column_width ='always')
