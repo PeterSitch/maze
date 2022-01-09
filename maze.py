@@ -8,7 +8,7 @@ import streamlit as st
 st.set_page_config(
     page_title="Meredith maze",
     page_icon="🦊",
-    layout="wide",
+    layout="centered",
 
  )
 
@@ -116,7 +116,7 @@ def buttons(options):
 loc_dict={'hr':hr,'m':m,'cc':cc,'im':im}
 
 flavour_dict={'hr':('at the tree of life talking to', 'The Wise Old Owl'),
-              'm':('hanging out with', 'Kara and Nara'),
+              'm':('hanging out with', 'Kara and Nala'),
               'cc':('at', 'Dogman\'s basket'),
               'im':('stopped by', 'Dogman\'s Head Minion')}
         
